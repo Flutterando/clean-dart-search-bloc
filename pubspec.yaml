@@ -24,7 +24,7 @@ dependencies:
   rxdart: ^0.24.1
   dartz: ^0.9.1
   bloc: ^6.0.1
-  dio: ^3.0.9
+  dio: ^5.0.3
   flutter_modular: ^2.0.0+1
   flutter:
     sdk: flutter
@@ -34,10 +34,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
 
 dev_dependencies:
-  modular_codegen: ^2.0.0+1
-  mockito: ^4.1.1
-  mobx_codegen: ^1.1.0+1
-  build_runner: ^1.10.1
+  modular_codegen: ^3.0.4
+  mockito: ^5.3.0
+  mobx_codegen: ^2.0.4
+  build_runner: ^2.2.0
   flutter_test:
     sdk: flutter
 
