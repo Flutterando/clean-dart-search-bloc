@@ -1,29 +1,24 @@
-import 'package:clean_dart_github_search/app/search/presenter/search_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter/material.dart';
-import 'package:clean_dart_github_search/app/app_widget.dart';
 
-import 'search/domain/usecases/search_by_text.dart';
-import 'search/external/github/github_search_datasource.dart';
-import 'search/infra/repositories/search_repository_impl.dart';
-import 'search/presenter/search_page.dart';
+import 'search/data/datasources/github/github_search_datasource.dart';
+import 'search/data/datasources/search_datasource.dart';
+import 'search/data/repositories/search_repository_impl.dart';
+import 'search/domain/blocs/search_bloc.dart';
+import 'search/domain/repositories/search_repository.dart';
+import 'search/ui/search_page.dart';
 
-class AppModule extends MainModule {
+class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        $SearchByTextImpl,
-        $SearchRepositoryImpl,
-        $GithubSearchDatasource,
-        Bind((i) => Dio()),
-        $SearchBloc,
+        Bind.instance<Dio>(Dio()),
+        AutoBind.factory<SearchDatasource>(GithubSearchDatasource.new),
+        AutoBind.factory<SearchRepository>(SearchRepositoryImpl.new),
+        AutoBind.singleton<SearchBloc>(SearchBloc.new),
       ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, __) => SearchPage()),
+  List<ModularRoute> get routes => [
+        ChildRoute(Modular.initialRoute, child: (_, __) => SearchPage()),
       ];
-
-  @override
-  Widget get bootstrap => AppWidget();
 }

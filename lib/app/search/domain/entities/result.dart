@@ -4,5 +4,10 @@ class Result {
   final String nickname;
   final String url;
 
-  const Result({this.image, this.name, this.nickname, this.url});
+  const Result({
+    required this.image,
+    required this.name,
+    required this.nickname,
+    required this.url,
+  });
 }
